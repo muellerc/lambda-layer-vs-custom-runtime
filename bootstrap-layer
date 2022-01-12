@@ -1,0 +1,10 @@
+#!/bin/sh
+
+/opt/jre-17/bin/java \
+  --add-opens java.base/java.util=ALL-UNNAMED \
+  -XX:+TieredCompilation \
+  -XX:TieredStopAtLevel=1 \
+  -Xshare:on \
+  -XX:+UseSerialGC \
+  -cp "$LAMBDA_TASK_ROOT:$LAMBDA_TASK_ROOT/*" \
+  com.amazonaws.services.lambda.runtime.api.client.AWSLambda "$_HANDLER"
